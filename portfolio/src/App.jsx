@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import "./index.css";
 import Home from "./Pages/Home";
 import About from "./Pages/About";
@@ -10,11 +9,9 @@ import Portofolio from "./Pages/Portofolio";
 import ContactPage from "./Pages/Contact";
 import ProjectDetails from "./components/ProjectDetail";
 import WelcomeScreen from "./Pages/WelcomeScreen";
-import { AnimatePresence } from 'framer-motion';
-import notfound from "./Pages/404";
+import { AnimatePresence } from "framer-motion";
 import NotFoundPage from "./Pages/404";
 import CertificateGallery from "./Pages/CertificateGallery";
-
 
 const LandingPage = ({ showWelcome, setShowWelcome }) => {
   return (
@@ -60,7 +57,7 @@ const ProjectPageLayout = () => (
         <span className="block text-sm pb-4 text-gray-500 text-center dark:text-gray-400">
           © 2025{" "}
           <a href="https://flowbite.com/" className="hover:underline">
-           Mash™
+            Mash™
           </a>
           . All Rights Reserved.
         </span>
@@ -77,7 +74,12 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<LandingPage showWelcome={showWelcome} setShowWelcome={setShowWelcome} />}
+          element={
+            <LandingPage
+              showWelcome={showWelcome}
+              setShowWelcome={setShowWelcome}
+            />
+          }
         />
         <Route path="/project/:id" element={<ProjectPageLayout />} />
 
@@ -90,5 +92,4 @@ function App() {
   );
 }
 
-// ✅ Don't forget this line AFTER the closing brace above
 export default App;
