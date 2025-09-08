@@ -47,25 +47,28 @@ const socialLinks = [
     color: "#ffffff",
     gradient: "from-[#333] to-[#24292e]",
   },
-  {
-      name: "X",
+{
+  name: "X",
   displayName: "X",
   subText: "@Manishankxr",
   icon: ({ className, ...props }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    width="24"
-    height="24"
-    className={className}
-    {...props}
-  >
-    <title>X</title>
-    <path d="M14.97 10.15 22.36 2h-2.07l-6.5 7.35L9.28 2H2l7.86 11.22L2 22h2.07l7.01-7.93L14.99 22H22l-7.03-11.85ZM11.49 13.3l-.81-.93-6.13-8h3.25l4.72 6.15.81.93 6.46 8.39h-3.25l-5.05-6.54Z"/>
-  </svg>
-),
-  },
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      width="24"
+      height="24"
+      className={className}
+      {...props}
+    >
+      <title>X</title>
+      <path d="M14.97 10.15 22.36 2h-2.07l-6.5 7.35L9.28 2H2l7.86 11.22L2 22h2.07l7.01-7.93L14.99 22H22l-7.03-11.85ZM11.49 13.3l-.81-.93-6.13-8h3.25l4.72 6.15.81.93 6.46 8.39h-3.25l-5.05-6.54Z"/>
+    </svg>
+  ),
+  url: "https://x.com/Manishankxr",
+  color: "#000000",
+  gradient: "from-[#000000] to-[#333333]",
+},
 ];
 
 const SocialLinks = () => {

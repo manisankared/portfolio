@@ -6,7 +6,7 @@ Let me introduce myself, I'm **Manisankar**. On this occasion, I'd like to share
 
 ## 🚀 Live Demo
 
-**Website Link:** [https://manisankar-portfolio.vercel.app](https://manisankar-portfolio.vercel.app)
+**Website Link:** [Manisankar-portfolio](https://manisankar-portfolio.vercel.app)
 
 ## 🛠️ Tech Stack
 
@@ -239,8 +239,8 @@ If you have any questions or need help with the setup, feel free to reach out\!
 
 **Manisankar**
 
-  - Website: [https://manisankar-portfolio.vercel.app/](https://manisankar-portfolio.vercel.app/)
-  - GitHub: [Manisankar](https://github.com/manisankared)
+  - Website: [Manisankar-portfolio](https://manisankar-portfolio.vercel.app)
+  - GitHub: [Manisankar-Github](https://github.com/manisankared)
 
 -----
 
