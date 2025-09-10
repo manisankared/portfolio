@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://manisankar-portfolio.vercel.app/
+Sitemap: https://portofolio-6gy48jqtc-manisankareds-projects.vercel.app/
