@@ -243,6 +243,7 @@ const Komentar = () => {
     const [error, setError] = useState('');
 
     const [projects, setProjects] = useState([]);
+    const [visitorCount, setVisitorCount] = useState(0);
 
 useEffect(() => {
     const fetchProjects = async () => {
@@ -367,6 +368,50 @@ useEffect(() => {
         supabase.removeChannel(subscription);
     };
 }, []);
+useEffect(() => {
+  const incrementVisitorCount = async () => {
+    try {
+      // Check if a row already exists for portfolio page
+      const { data, error } = await supabase
+        .from('visitor_count')
+        .select('*')
+        .eq('page_name', 'portfolio')
+        .single();
+
+      if (error && error.code !== 'PGRST116') {
+        console.error(error);
+        return;
+      }
+
+      if (data) {
+        // Update existing count
+        const { data: updated } = await supabase
+          .from('visitor_count')
+          .update({ count: data.count + 1 })
+          .eq('page_name', 'portfolio')
+          .select()
+          .single();
+
+        setVisitorCount(updated.count);
+      } else {
+        // Insert initial row
+        const { data: inserted } = await supabase
+          .from('visitor_count')
+          .insert({ page_name: 'portfolio', count: 1 })
+          .select()
+          .single();
+
+        setVisitorCount(inserted.count);
+      }
+    } catch (err) {
+      console.error('Error updating visitor count:', err);
+    }
+  };
+
+  incrementVisitorCount();
+}, []);
+
+
 
 
     const uploadImage = useCallback(async (imageFile) => {
@@ -455,9 +500,10 @@ useEffect(() => {
                     <div className="p-2 rounded-xl bg-indigo-500/20">
                         <MessageCircle className="w-6 h-6 text-indigo-400" />
                     </div>
-                    <h3 className="text-xl font-semibold text-white">
-                        Comments <span className="text-indigo-400">({totalComments})</span>
-                    </h3>
+                   <h3 className="text-xl font-semibold text-white flex items-center gap-4">
+  Comments <span className="text-indigo-400">({totalComments})</span>
+  <span className="text-sm text-gray-400">👁 {visitorCount}</span>
+</h3>
                 </div>
             </div>
             <div className="p-6 space-y-6">

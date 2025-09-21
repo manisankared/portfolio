@@ -127,8 +127,23 @@ export default function FullWidthTabs() {
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [showAllCertificates, setShowAllCertificates] = useState(false);
   const [showAllBadges, setShowAllBadges] = useState(false);
-  const isMobile = window.innerWidth < 768;
-  const initialItems = isMobile ? 4 : 6;
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [certificateFilter, setCertificateFilter] = useState("All");
+
+
+useEffect(() => {
+  function handleResize() {
+    setWindowWidth(window.innerWidth);
+  }
+
+  window.addEventListener("resize", handleResize);
+
+  // Cleanup listener on unmount
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
+
+const isMobile = windowWidth < 768;
+const initialItems = isMobile ? 4 : 6;
 
   useEffect(() => {
     AOS.init({
@@ -352,29 +367,67 @@ export default function FullWidthTabs() {
             )}
           </TabPanel>
 
-          <TabPanel value={value} index={1} dir={theme.direction}>
-            <div className="container mx-auto flex justify-center items-center overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-3 md:gap-5 gap-4">
-                {displayedCertificates.map((certificate, index) => (
-                  <div
-                    key={certificate.id || index}
-                    data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
-                    data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
-                  >
-                    <Certificate ImgSertif={certificate.Img} />
-                  </div>
-                ))}
+<TabPanel value={value} index={1} dir={theme.direction}>
+  {(() => {
+    // Filter certificates based on selected category
+    const filteredCertificates =
+      certificateFilter === "All"
+        ? certificates
+        : certificates.filter(cert => cert.category === certificateFilter);
+
+    const displayedCertificates = showAllCertificates
+      ? filteredCertificates
+      : filteredCertificates.slice(0, initialItems);
+
+    return (
+      <>
+        {/* Certificate Filter Buttons */}
+        <div className="w-full flex flex-wrap justify-center mb-6 gap-4">
+          {["All", "Tech", "AWS"].map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setCertificateFilter(cat)}
+              className={`px-6 py-2 rounded-lg border transition-all duration-300 font-semibold text-base
+                ${certificateFilter === cat 
+                  ? "bg-purple-600 text-white border-purple-500" 
+                  : "bg-white/10 text-slate-200 border-white/20 hover:bg-white/20 hover:text-white"}
+              `}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {/* Certificates Grid */}
+        <div className="container mx-auto flex justify-center items-center overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+            {displayedCertificates.map((certificate, index) => (
+              <div
+                key={certificate.id || index}
+                data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
+                data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
+              >
+                <Certificate ImgSertif={certificate.Img} />
               </div>
-            </div>
-            {certificates.length > initialItems && (
-              <div className="mt-6 w-full flex justify-start">
-                <ToggleButton
-                  onClick={() => toggleShowMore('certificates')}
-                  isShowingMore={showAllCertificates}
-                />
-              </div>
-            )}
-          </TabPanel>
+            ))}
+          </div>
+        </div>
+
+        {/* See More / See Less Toggle */}
+        {filteredCertificates.length > initialItems && (
+          <div className="mt-6 w-full flex justify-center">
+            <ToggleButton
+              onClick={() => toggleShowMore('certificates')}
+              isShowingMore={showAllCertificates}
+            />
+          </div>
+        )}
+      </>
+    );
+  })()}
+</TabPanel>
+
+
           <TabPanel value={value} index={2} dir={theme.direction}>
   <div className="container mx-auto flex justify-center items-center overflow-hidden">
     <div className="grid grid-cols-1 md:grid-cols-3 md:gap-5 gap-4">
