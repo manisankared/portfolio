@@ -36,7 +36,7 @@ Follow these steps to run the project locally:
 
 ```bash
 git clone https://github.com/manisankared
-cd Portofolio
+cd Portfolio
 ```
 
 ### 2\. Install Dependencies
@@ -183,7 +183,7 @@ VALUES ('Created By Manisankar', 'MASH');
 
 ### 3\. Enable Realtime (for Comment System)
 
-  - Go to **Table Editor > portofolio_comments**.
+  - Go to **Table Editor > portfolio_comments**.
   - Enable Realtime for the `portfolio_comments`.
 
 ## 🔧 Environment Variables Setup
