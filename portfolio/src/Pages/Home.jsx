@@ -78,7 +78,7 @@ const TYPING_SPEED = 100;
 const ERASING_SPEED = 50;
 const PAUSE_DURATION = 2000;
 const WORDS = ["Software Engineer", "AI & Web Systems"];
-const TECH_STACK = ["React", "Javascript", "Node.js", "Tailwind CSS", "Python", "Java", "Git\Github", "AWS"];
+const TECH_STACK = ["React", "Javascript", "Node.js", "Tailwind CSS", "Python", "Java", "Git\ Github", "AWS", "Oracle", "Cloud Solutions"];
 const SOCIAL_LINKS = [
   { icon: Github, link: "https://github.com/manisankared" },
   { icon: Linkedin, link: "https://www.linkedin.com/in/manisankxr" },
