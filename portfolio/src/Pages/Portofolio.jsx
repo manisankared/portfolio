@@ -356,7 +356,7 @@ const initialItems = isMobile ? 4 : 6;
       <>
         {/* Certificate Filter Buttons */}
         <div className="w-full flex flex-wrap justify-center mb-6 gap-4">
-          {["All", "Tech", "AWS"].map((cat) => (
+          {["All", "Tech", "AWS", "Oracle"].map((cat) => (
             <button
               key={cat}
               onClick={() => setCertificateFilter(cat)}
